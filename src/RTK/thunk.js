@@ -7,7 +7,9 @@ export const fetchMultiplePoketmonById = createAsyncThunk(
 
         const fetchAPI = async (poketmonId) => {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${poketmonId}/`)
+
             const data = await response.json()
+            
             const poketmonData = {
                 id: poketmonId,
                 name: data.names.find(el => el.language.name === 'ko').name,
@@ -17,8 +19,6 @@ export const fetchMultiplePoketmonById = createAsyncThunk(
             }
             return poketmonData
         }
-
         return await Promise.all(numberArray.map((el) => fetchAPI(el)))
-
     }
 )
