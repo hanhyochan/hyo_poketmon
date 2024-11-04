@@ -1,12 +1,12 @@
-import { useEffect } from 'react'
+import { Suspense, useEffect, lazy } from 'react'
 import './App.scss'
 import { useDispatch } from 'react-redux'
 import { fetchMultiplePoketmonById } from "./RTK/thunk"
 import { Link, Routes, Route } from 'react-router-dom'
-import Main from './pages/Main'
-import Detail from './pages/Detail'
-import Search from './pages/Search'
-import Favorite from './pages/Favorite'
+import Main from "./pages/Main.jsx"
+const Detail = lazy(() => import("./pages/Detail.jsx"))
+const Search = lazy(() => import("./pages/Search.jsx"))
+const Favorite = lazy(() => import("./pages/Favorite.jsx"))
 
 function App() {
   const dispatch = useDispatch()
@@ -25,14 +25,16 @@ function App() {
         <Link to={'/favorite'}>찜목록</Link>
       </nav>
 
-      <main className='flex flex-wrap gap-[20px] justify-center pt-[20px]'>
-        <Routes>
-          <Route path={'/'} element={<Main />} />
-          <Route path={'/detail/:poketmonId'} element={<Detail />} />
-          <Route path={'/search'} element={<Search />} />
-          <Route path={'/favorite'} element={<Favorite />} />
-        </Routes>
-      </main>
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <main className='flex flex-wrap gap-[20px] justify-center pt-[20px]'>
+          <Routes>
+            <Route path={'/'} element={<Main />} />
+            <Route path={'/detail/:poketmonId'} element={<Detail />} />
+            <Route path={'/search'} element={<Search />} />
+            <Route path={'/favorite'} element={<Favorite />} />
+          </Routes>
+        </main>
+      </Suspense>
     </>
   )
 }

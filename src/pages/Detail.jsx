@@ -6,7 +6,7 @@ import { selectPoketmonById } from '../RTK/selector';
 const Detail = () => {
     const { poketmonId } = useParams()
     const poketmon = useSelector(selectPoketmonById(Number(poketmonId)))
-    console.log(poketmon)
+
     return (
         <div className='flex flex-col justify-center items-center border border-[gray] p-[30px] rounded-[10px]'>
             <div className='text-[28px] mb-[10px]'>{poketmon.name}</div>

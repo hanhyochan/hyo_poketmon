@@ -4,6 +4,7 @@ import { Card } from '../component/Card';
 
 const Main = () => {
     const poketmonData = useSelector(state => state.poketmon.data)
+
     return (
         <>
             {poketmonData.map(el => <Card key={el.id} poketmon={el} />)}
