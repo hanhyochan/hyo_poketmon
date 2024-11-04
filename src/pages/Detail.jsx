@@ -11,7 +11,7 @@ const Detail = () => {
     const poketmon = useSelector(selectPoketmonById(Number(poketmonId)))
 
     return (
-        <div className='flex flex-col justify-center items-center border border-[gray] p-[30px] rounded-[10px]'>
+        <div className='bg-white flex flex-col justify-center items-center border border-[gray] py-[30px] px-[30px] rounded-[10px] border-b-[8px] border-r-[8px] border-black'>
             <div className='text-[28px] mb-[10px]'>{poketmon.name}
                 <FavoriteButton poketmonId={Number(poketmonId)} />
             </div>
