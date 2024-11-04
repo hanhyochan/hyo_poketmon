@@ -22,3 +22,4 @@ export const fetchMultiplePoketmonById = createAsyncThunk(
         return await Promise.all(numberArray.map((el) => fetchAPI(el)))
     }
 )
+
